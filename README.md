@@ -33,12 +33,17 @@ A simple tool that reads error text from your clipboard and generates a meme usi
    ```
 3. The generated meme will open in your default web browser, and the URL will be copied to your clipboard
 
-## Customization
+## MacOS shortcut
 
-You can change the meme template by modifying the `TEMPLATE_ID` in `config.py`. Some popular templates include:
-- 61579: One Does Not Simply (default)
-- 101470: Ancient Aliens
-- 87743: Two Buttons
-- 438680: Batman Slapping Robin
+1. Open Automator
+2. Create a new workflow
+3. Add a "Run Script" action
+4. Set the script to:
+   ```bash
+   cd /path/to/error-meme
+export OPENAI_API_KEY=your_openai_api_key
+bash meme.sh
+   ```
+5. Save the workflow
+6. Assign a keyboard shortcut to the workflow
 
-Visit [Imgflip's API documentation](https://imgflip.com/api) for more information.
