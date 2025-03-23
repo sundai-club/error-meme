@@ -17,12 +17,11 @@ A simple tool that reads error text from your clipboard and generates a meme usi
    ```
    pip install -r requirements.txt
    ```
-3. Edit `config.py` to add your Imgflip username and password:
-   ```python
-   USERNAME = "your_imgflip_username"
-   PASSWORD = "your_imgflip_password"
+3. Create a `.env` file in the root directory and add your Imgflip API credentials:
    ```
-   You can also change the default meme template ID if desired.
+   IMGFLIP_USERNAME=your_imgflip_username
+   IMGFLIP_PASSWORD=your_imgflip_password
+   ```
 
 ## Usage
 
