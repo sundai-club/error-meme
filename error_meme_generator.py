@@ -12,14 +12,21 @@ class MemeTask(BaseModel):
 
 class ErrorMemeGenerator:
     memes = []
-    """
-    A class to generate memes from error messages in the clipboard.
-    """
+    _instance = None
+
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super(ErrorMemeGenerator, cls).__new__(cls)
+            cls._instance.initialized = False
+        return cls._instance
+
     def __init__(self):
-        print('loading memes...')
-        with open("memes.json", "r") as f:
-            self.memes = json.load(f)
-        print('memes loaded')
+        if not self.initialized:
+            print('loading memes...')
+            with open("memes.json", "r") as f:
+                self.memes = json.load(f)
+            print('memes loaded')
+            self.initialized = True
     
     def get_error_from_clipboard(self):
         """
@@ -63,6 +70,14 @@ class ErrorMemeGenerator:
         error_text = self.get_error_from_clipboard()
         if not error_text:
             raise Exception("No error text found in clipboard")
-        meme_task = self.prepare_caption(error_text)
+        return self.generate_meme_from_error(error_text)
 
+    def generate_meme_from_error(self, error_text: str) -> str:
+        if not error_text:
+            raise Exception("No error text provided")
+        meme_task = self.prepare_caption(error_text)
         return generate_meme(meme_task.templateId, meme_task.text0, meme_task.text1)
+
+def generate_meme_for_error(error_text: str) -> str:
+    generator = ErrorMemeGenerator()
+    return generator.generate_meme_from_error(error_text)
