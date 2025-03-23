@@ -1,5 +1,9 @@
 import requests
-from config import USERNAME, PASSWORD
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 def generate_meme(template_id, text0, text1):
     """
@@ -19,8 +23,8 @@ def generate_meme(template_id, text0, text1):
     url = "https://api.imgflip.com/caption_image"
     payload = {
         "template_id": template_id,
-        "username": USERNAME,
-        "password": PASSWORD,
+        "username": os.environ.get("IMGFLIP_USERNAME"),
+        "password": os.environ.get("IMGFLIP_PASSWORD"),
         "text0": text0,
         "text1": text1
     }
