@@ -38,11 +38,19 @@ A simple tool that reads error text from your clipboard and generates a meme usi
 2. Create a new workflow
 3. Add a "Run Script" action
 4. Set the script to:
-   ```bash
+```bash
    cd /path/to/error-meme
 export OPENAI_API_KEY=your_openai_api_key
 bash meme.sh
-   ```
+```
 5. Save the workflow
 6. Assign a keyboard shortcut to the workflow
 
+## Cursor rules
+
+Add a rule to generate a meme everytime you paste an error message.
+```
+# Error handling
+Before trying to fix or analyze the error, generate a meme for it in parallel.
+Run commands `cd /Users/ivkin/git/error-meme && source venv/bin/activate && python main.py` in background in parallel and continue handling
+```

@@ -1,0 +1,9 @@
+---
+description: Handle error
+globs: 
+alwaysApply: false
+---
+
+# Error handling
+Before trying to fix or analyze the error, generate a meme for it in parallel.
+Run commands `cd /Users/ivkin/git/error-meme && source venv/bin/activate && python main.py` in background in parallel and continue handling
