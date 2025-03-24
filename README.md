@@ -2,11 +2,12 @@
 
 A quick guide to set up automatic meme generation for your error messages in Cursor IDE using Model Context Protocol (MCP).
 
+
 Vibe coding is fun but what about vibe-debugging? Not so much, right?
 How about we make it more fun?
 While waiting for robots to fix our errors, let's not waste any time learning how to code better, but rather just laugh a little.
 
-![Debug memes in action](https://user-images.githubusercontent.com/113661/222101111-2c7e7b7e-8c0c-4cb3-80a9-8c4c6f1ccf7e.png)
+![Debug memes in action]((https://github.com/sundai-club/error-meme/blob/main/meme-1742837907213.png?raw=true))
 
 
 ## Prerequisites
