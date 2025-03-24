@@ -1,81 +1,64 @@
-# Error Meme Generator
+# Cursor Meme Generator MCP Server Setup
 
-A simple tool that reads error text from your clipboard and generates a meme using the Imgflip API. It also provides an MCP (Message Control Program) server for integration with AI tools.
+A quick guide to set up automatic meme generation for your error messages in Cursor IDE using Model Context Protocol (MCP).
 
-## Features
+Vibe coding is fun but what about vibe-debugging? Not so much, right?
+How about we make it more fun?
+While waiting for robots to fix our errors, let's not waste any time learning how to code better, but rather just laugh a little.
 
-- Reads error messages from your clipboard
-- Automatically splits the error message into top and bottom text
-- Generates a meme using the Imgflip API
-- Opens the meme in your default web browser
-- Copies the meme URL back to your clipboard
-- MCP server for AI tool integration
+![Debug memes in action](https://user-images.githubusercontent.com/113661/222101111-2c7e7b7e-8c0c-4cb3-80a9-8c4c6f1ccf7e.png)
 
-## Setup
 
-1. Clone this repository
-2. Install the required dependencies:
-   ```
-   pip install -r requirements.txt
-   ```
-3. Create a `.env` file in the root directory and add your credentials:
-   ```
-   IMGFLIP_USERNAME=your_imgflip_username
-   IMGFLIP_PASSWORD=your_imgflip_password
-   OPENAI_API_KEY=your_openai_api_key
-   MCP_PORT=8000
-   ```
+## Prerequisites
+
+- Cursor IDE installed
+- Node.js installed
+- ImgFlip account (free at imgflip.com)
+- OpenAI API key
+
+## Setup Steps
+
+1. Clone the meme generator repository:
+```bash
+git clone https://github.com/sundai-club/error-meme
+cd error-meme
+npm install
+npm run build
+```
+
+2. Create your MCP configuration file in one of these locations:
+   - Project-specific: `.cursor/mcp.json` in your project directory
+   - Global: `~/.cursor/mcp.json` in your home directory
+
+3. Add the following configuration (replace with your credentials):
+```json
+{
+  "mcpServers": {    
+    "meme": {
+        "command": "node",
+        "args": [
+            "/path/to/your/error-meme/build/index.js"
+        ],
+        "env": {
+            "OPENAI_API_KEY": "your-openai-api-key",
+            "IMGFLIP_USERNAME": "your-imgflip-username",
+            "IMGFLIP_PASSWORD": "your-imgflip-password"
+        }
+    }
+  }
+}
+```
+
+4. Restart Cursor IDE to apply the changes
 
 ## Usage
 
-### CLI Mode
-1. Copy an error message to your clipboard
-2. Run the script:
-   ```
-   python main.py
-   ```
-3. The generated meme will open in your default web browser, and the URL will be copied to your clipboard
+1. Open Cursor IDE
+2. Make sure to enable Agent mode in the chat
+3. Paste your error message into the chat
+4. The agent will automatically generate a meme for your error!
 
-#### API Endpoints
+## Resources
 
-- `POST /generate-meme`
-  ```json
-  {
-    "error_message": "Your error message here",
-    "return_type": "url"  // or "base64"
-  }
-  ```
-  Response:
-  ```json
-  {
-    "meme_url": "https://i.imgflip.com/xxxxx.jpg",
-    "temp_file_path": null,
-    "status": "success"
-  }
-  ```
-
-- `GET /health`
-  Health check endpoint
-
-## MacOS shortcut
-
-1. Open Automator
-2. Create a new workflow
-3. Add a "Run Script" action
-4. Set the script to:
-```bash
-   cd /path/to/error-meme
-export OPENAI_API_KEY=your_openai_api_key
-bash meme.sh
-```
-5. Save the workflow
-6. Assign a keyboard shortcut to the workflow
-
-## Cursor rules
-
-Add a rule to generate a meme everytime you paste an error message.
-```
-# Error handling
-Before trying to fix or analyze the error, generate a meme for it in parallel.
-Run commands `cd /Users/ivkin/git/error-meme && source venv/bin/activate && python main.py` in background in parallel and continue handling
-```
+- [Official MCP Documentation](https://docs.cursor.com/context/model-context-protocol)
+- [ImgFlip API Documentation](https://imgflip.com/api)
