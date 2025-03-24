@@ -31,6 +31,8 @@ class ErrorMemeGenerator {
   private memes: MemeTemplate[] = [];
   private initialized = false;
   private openai: OpenAI;
+  private recentlyUsedTemplates: string[] = [];
+  private readonly MAX_RECENT_TEMPLATES = 5;
 
   private constructor() {
     this.openai = new OpenAI();
@@ -155,10 +157,14 @@ class ErrorMemeGenerator {
   ]
 
   async prepareMemeCaption(errorText: string): Promise<MemeTask> {
+    const availableMemes = this.memes.filter(
+      meme => !this.recentlyUsedTemplates.includes(meme.id)
+    );
+
     const prompt = `
       For a given error text <error>${errorText}</error> find the best meme template from this list:
       <memes>
-      ${JSON.stringify(this.memes)}
+      ${JSON.stringify(availableMemes)}
       </memes>
 
       Be creative and try to always choose a different meme that reflects the error situation the best.
@@ -188,6 +194,13 @@ class ErrorMemeGenerator {
     }
 
     const result = JSON.parse(content) as MemeTask;
+    
+    // Update recently used templates
+    this.recentlyUsedTemplates.push(result.templateId);
+    if (this.recentlyUsedTemplates.length > this.MAX_RECENT_TEMPLATES) {
+      this.recentlyUsedTemplates.shift(); // Remove oldest template
+    }
+
     return result;
   }
 
