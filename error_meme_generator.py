@@ -22,10 +22,8 @@ class ErrorMemeGenerator:
 
     def __init__(self):
         if not self.initialized:
-            print('loading memes...')
             with open("memes.json", "r") as f:
                 self.memes = json.load(f)
-            print('memes loaded')
             self.initialized = True
     
     def get_error_from_clipboard(self):
