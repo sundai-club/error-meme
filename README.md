@@ -7,7 +7,7 @@ Vibe coding is fun but what about vibe-debugging? Not so much, right?
 How about we make it more fun?
 While waiting for robots to fix our errors, let's not waste any time learning how to code better, but rather just laugh a little.
 
-![Debug memes in action]((https://github.com/sundai-club/error-meme/blob/main/meme-1742837907213.png?raw=true))
+![Debug memes in action](https://github.com/sundai-club/error-meme/blob/main/meme-1742837907213.png?raw=true)
 
 
 ## Prerequisites
