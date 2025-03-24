@@ -36,13 +36,6 @@ A simple tool that reads error text from your clipboard and generates a meme usi
    ```
 3. The generated meme will open in your default web browser, and the URL will be copied to your clipboard
 
-### MCP Server Mode
-1. Start the MCP server:
-   ```
-   python mcp_server.py
-   ```
-2. The server will be available at `http://localhost:8000`
-
 #### API Endpoints
 
 - `POST /generate-meme`
@@ -86,13 +79,3 @@ Add a rule to generate a meme everytime you paste an error message.
 Before trying to fix or analyze the error, generate a meme for it in parallel.
 Run commands `cd /Users/ivkin/git/error-meme && source venv/bin/activate && python main.py` in background in parallel and continue handling
 ```
-
-## AI Tool Integration
-
-To integrate with AI tools, you can use the MCP server. Here's an example of how to use it:
-
-1. Start the MCP server
-2. Make HTTP requests to the `/generate-meme` endpoint
-3. Use the returned meme URL in your AI tool's response
-
-The MCP server is designed to be lightweight and stateless, making it perfect for integration with AI tools.
