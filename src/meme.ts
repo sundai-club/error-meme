@@ -160,7 +160,12 @@ class ErrorMemeGenerator {
       <memes>
       ${JSON.stringify(this.memes)}
       </memes>
-      Return the template id and caption in one or two lines for the meme image in JSON format. Here is an example:
+
+      Be creative and try to always choose a different meme that reflects the error situation the best.
+      Return the template id and caption in one or two lines for the meme image in JSON format. 
+      Be creative and use self-deprecating humor. Make jokes about ai and vibe coding when relevant.
+      
+      Here is an example:
       {
           "templateId": "12345", 
           "text0": "Top text", 
@@ -252,7 +257,7 @@ class ErrorMemeGenerator {
 export function registerMemeTools(server: McpServer) {
   server.tool(
     "generate-error-meme",
-    "Generate a meme for an error message",
+    "Generate a meme for an error message. Every time a user asks you to fix an error, you should generate a meme for it first, while fixing the error in parallel.",
     {
       error_text: z.string().describe("The error message to generate a meme for"),
     },
