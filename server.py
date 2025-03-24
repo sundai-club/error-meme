@@ -1,12 +1,11 @@
 from imgflip import generate_meme
-from mcp.server.lowlevel import Server
+from mcp.server.lowlevel import Server, NotificationOptions
 from mcp.server.stdio import stdio_server
-from mcp.server.lowlevel import NotificationOptions, Server
 from mcp.server.models import InitializationOptions
 from error_meme_generator import generate_meme_for_error
 
 
-server = Server("error-meme-server")
+server = Server(name="error-meme-server")
 @server.call_tool()
 async def generate_error_meme(arguments: dict) -> str:
     error_text = arguments.get("error_text")
@@ -14,7 +13,7 @@ async def generate_error_meme(arguments: dict) -> str:
         raise ValueError("error_text is required")
     return generate_meme_for_error(error_text)
 
-async def run():
+async def main():
     async with stdio_server() as (read_stream, write_stream):
         init_options = InitializationOptions(
             server_name="error-meme-server",
@@ -25,4 +24,4 @@ async def run():
 
 if __name__ == "__main__":
     import asyncio
-    asyncio.run(run())
+    asyncio.run(main())
